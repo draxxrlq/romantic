@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Pequeno Universo 🌌</title>
+    
+    <!-- Fontes e Estilos Externos -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --red: #a31d1d;
+            --pink: #f8adac;
+            --paper: #fdf6e3;
+            --text: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--paper);
+            color: var(--text);
+            overflow-x: hidden;
+            /* FUNDO: Use a Imagem 7 ou 8 (Cupidos/Flechas) como padrão de fundo */
+            background-image: url('URL_DA_IMAGEM_8'); 
+            background-size: 250px;
+            background-attachment: fixed;
+            line-height: 1.6;
+        }
+
+        /* EFEITO DE BEIJO (IMAGEM 9 ou 10) */
+        .kiss-mark {
+            position: absolute;
+            width: 70px;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            animation: kiss-anim 1.2s ease-out forwards;
+        }
+
+        @keyframes kiss-anim {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1.2) rotate(15deg); opacity: 0; }
+        }
+
+        /* TELA DE ENTRADA */
+        #intro {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--paper); z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+        }
+
+        /* SEÇÕES */
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .container { width: 100%; max-width: 400px; }
+
+        /* ELEMENTOS DE SCRAPBOOK */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 2px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .paper-ripped {
+            background: white;
+            padding: 20px;
+            /* Simula papel rasgado (pode usar Imagem 1 ou 6 aqui) */
+            border-left: 10px solid var(--red);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.1);
+        }
+
+        /* POLAROID */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: rotate(calc(var(--r, 0deg)));
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        .polaroid img { width: 100%; height: 300px; object-fit: cover; }
+        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.5rem; text-align: center; margin-top: 15px; }
+
+        /* TITULOS */
+        h1, h2, h3 { font-family: 'Dancing Script', cursive; color: var(--red); text-align: center; }
+        h2 { font-size: 2.5rem; margin-bottom: 30px; }
+
+        /* JOGUINHO */
+        .quiz-option {
+            display: block; width: 100%; padding: 12px; margin: 10px 0;
+            border: 2px solid var(--red); background: none; border-radius: 50px;
+            cursor: pointer; font-weight: 600; transition: 0.3s;
+        }
+        .quiz-option:active { background: var(--pink); }
+
+        /* BOTÕES */
+        .btn-main {
+            padding: 15px 35px; border-radius: 50px; border: none;
+            background: var(--red); color: white; font-size: 1.2rem;
+            font-family: 'Dancing Script'; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(163,29,29,0.3);
+        }
+
+        /* DECORAÇÕES */
+        .sticker { position: absolute; pointer-events: none; z-index: 2; }
+        
+        .timer { font-size: 1.3rem; font-weight: bold; color: var(--red); text-align: center; margin: 20px 0; }
+
+        /* CARTA FINAL */
+        .letter-box {
+            display: none; background: #fffceb; padding: 30px;
+            border-radius: 5px; font-family: 'Dancing Script'; font-size: 1.5rem;
+            border: 1px solid #ddd; line-height: 1.8;
+        }
+
+        #main-content { display: none; }
+    </style>
+</head>
+<body onclick="spawnKiss(event)">
+
+    <!-- MÚSICA -->
+    <audio id="music" loop>
+        <source src="SUA_MUSICA.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 1. TELA INICIAL (MISTÉRIO) -->
+    <div id="intro">
+        <!-- Imagem 4 (Snoopy) -->
+        <img src="URL_DA_IMAGEM_4" width="150" data-aos="zoom-in">
+        <h1 style="margin: 20px 0;">Ei, meu amor...</h1>
+        <p style="margin-bottom: 25px;">Preparei algo especial para você.</p>
+        <button class="btn-main" onclick="startApp()">Clique aqui, meu amor 💌</button>
+    </div>
+
+    <div id="main-content">
+        
+        <!-- 2. NOSSA HISTÓRIA (CONTADOR E TE AMO) -->
+        <section>
+            <!-- Imagem 2 (Te Amo recorte) -->
+            <img src="URL_DA_IMAGEM_2" width="280" data-aos="fade-down">
+            
+            <div class="container" data-aos="fade-up">
+                <div class="card">
+                    <h2>Estamos juntas há...</h2>
+                    <div id="timer" class="timer">Contando...</div>
+                    <p style="text-align: center; font-style: italic;">"E eu ainda escolheria você em todos os dias da minha vida."</p>
+                </div>
+            </div>
+            
+            <!-- Imagem 3 (Fio do Coração) -->
+            <img src="URL_DA_IMAGEM_3" width="300" style="margin-top: 30px;" data-aos="zoom-in">
+        </section>
+
+        <!-- 3. LINHA DO TEMPO (HISTÓRIA) -->
+        <section style="background: rgba(255,255,255,0.4);">
+            <h2 data-aos="fade-up">Nossa História 📖</h2>
+            
+            <div class="container">
+                <div class="paper-ripped" data-aos="fade-right">
+                    <h3 style="text-align: left;">💬 Como tudo começou</h3>
+                    <p>Aqui você escreve aquele textinho sobre o primeiro "Oi" ou o primeiro encontro.</p>
+                </div>
+                
+                <div class="paper-ripped" style="margin-top: 30px; border-left-color: var(--pink);" data-aos="fade-left">
+                    <h3 style="text-align: left;">❤️ Quando percebemos...</h3>
+                    <p>Aquele momento em que o coração bateu mais forte e não teve mais volta.</p>
+                </div>
+
+                <div class="paper-ripped" style="margin-top: 30px;" data-aos="fade-right">
+                    <h3 style="text-align: left;">🥹 Momentos difíceis</h3>
+                    <p>Superamos tudo juntas, e isso só nos fez mais fortes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERIA DE MEMÓRIAS -->
+        <section>
+            <h2 data-aos="fade-up">Cada foto, uma parte de nós 📸</h2>
+            
+            <div class="container">
+                <div class="polaroid" style="--r: -3deg" data-aos="flip-left">
+                    <img src="SUA_FOTO_1.jpg" alt="Foto">
+                    <p>Nosso melhor momento</p>
+                </div>
+
+                <!-- Imagem 5 (Macaquinhos) decorativa -->
+                <img src="URL_DA_IMAGEM_5" width="120" style="margin: -20px 0 20px 0; transform: rotate(10deg);">
+
+                <div class="polaroid" style="--r: 2deg" data-aos="flip-right">
+                    <img src="SUA_FOTO_2.jpg" alt="Foto">
+                    <p>Amo o seu sorriso</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. MOTIVOS (INTERATIVO) -->
+        <section style="background: white;">
+            <h2 data-aos="fade-up">Motivos pelos quais eu te amo ❤️</h2>
+            
+            <div class="container" style="text-align: center;">
+                <div class="card" id="reason-box" data-aos="zoom-in">
+                    <p id="reason-text" style="font-size: 1.2rem; min-height: 60px;">Clique para descobrir um motivo...</p>
+                </div>
+                <button class="btn-main" onclick="showNextReason()">Descobrir motivo ✨</button>
+                <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.6;">(Você pode colocar 365 motivos aqui!)</p>
+            </div>
+        </section>
+
+        <!-- 6. JOGUINHO (QUIZ) -->
+        <section>
+            <h2 data-aos="fade-up">Quanto você conhece nossa história? 🎮</h2>
+            
+            <div class="container card" data-aos="fade-up">
+                <p id="quiz-question" style="font-weight: bold; margin-bottom: 15px;">Qual foi o lugar do nosso primeiro beijo?</p>
+                <button class="quiz-option" onclick="quiz(true)">[Lugar Correto]</button>
+                <button class="quiz-option" onclick="quiz(false)">Em um sonho 😂</button>
+                <button class="quiz-option" onclick="quiz(false)">Por acaso</button>
+                <p id="quiz-feedback" style="margin-top: 15px; font-weight: bold;"></p>
+            </div>
+            
+            <p style="margin-top: 20px; font-style: italic;">"Independentemente do resultado, você sempre será a pessoa que mais conhece meu coração."</p>
+        </section>
+
+        <!-- 7. CAIXA SURPRESA (CARTA) -->
+        <section id="final">
+            <h2 data-aos="fade-up">Uma surpresa para você 🎁</h2>
+            
+            <div class="container" style="text-align: center;">
+                <!-- Imagem 4 ou 9 para representar o presente -->
+                <div id="gift-box" onclick="openLetter()" style="font-size: 100px; cursor: pointer; animation: float 2s infinite;">🎁</div>
+                
+                <div id="letter" class="letter-box">
+                    <h3>Minha eterna namorada,</h3>
+                    <p style="margin-top: 20px;">
+                        Aqui você escreve a sua carta completa. Fale dos momentos felizes, das dificuldades que superaram e de como você se sente hoje.
+                        <br><br>
+                        Você é a luz dos meus dias. Te amo daqui até a última estrela desse universo.
+                        <br><br>
+                        Com amor, [Seu Nome]
+                    </p>
+                    <!-- Imagem 10 (Beijo) no final da carta -->
+                    <img src="URL_DA_IMAGEM_10" width="100" style="margin-top: 20px;">
+                </div>
+            </div>
+        </section>
+
+        <footer style="padding: 50px; text-align: center; opacity: 0.6;">
+            Desenvolvido com todo o amor do mundo. ❤️
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // CONFIGURAÇÕES
+        const startDate = new Date("2023-01-12T00:00:00"); // COLOQUE SUA DATA AQUI
+        const reasons = [
+            "Amo o seu sorriso.",
+            "Amo o jeito como você me faz rir.",
+            "Amo até os seus pequenos defeitos.",
+            "Amo nossas conversas infinitas.",
+            "Amo o jeito que você me cuida.",
+            "Amo você simplesmente por ser você."
+        ];
+
+        function startApp() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('music').play();
+            updateTimer();
+            setInterval(updateTimer, 1000);
+            window.scrollTo(0,0);
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+            document.getElementById('timer').innerText = `${d} dias, ${h}h ${m}m ${s}s`;
+        }
+
+        function showNextReason() {
+            const r = reasons[Math.floor(Math.random() * reasons.length)];
+            document.getElementById('reason-text').innerText = r;
+            confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 }, colors: ['#a31d1d', '#f8adac'] });
+        }
+
+        function quiz(correct) {
+            const fb = document.getElementById('quiz-feedback');
+            if(correct) {
+                fb.innerText = "Acertou! Você conhece cada detalhe nosso. 🥰";
+                fb.style.color = "green";
+                confetti();
+            } else {
+                fb.innerText = "Quase! Mas o que vale é a intenção (e os beijos que vou te dar pra você lembrar). 😏";
+                fb.style.color = "var(--red)";
+            }
+        }
+
+        function openLetter() {
+            document.getElementById('gift-box').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        // EFEITO DE BEIJO AO TOCAR (Imagem 9 ou 10)
+        function spawnKiss(e) {
+            const kiss = document.createElement('img');
+            kiss.src = 'URL_DA_IMAGEM_9'; // Coloque aqui o link da imagem da marca de beijo
+            kiss.className = 'kiss-mark';
+            kiss.style.top = e.pageY + 'px';
+            kiss.style.left = e.pageX + 'px';
+            document.body.appendChild(kiss);
+            setTimeout(() => kiss.remove(), 1200);
+        }
+    </script>
+</body>
+</html>
