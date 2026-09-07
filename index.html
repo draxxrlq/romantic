@@ -14,14 +14,12 @@
             --text: #333;
             --soft: #fff9f0;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--paper);
@@ -33,7 +31,6 @@
             line-height: 1.6;
             min-height: 100vh;
         }
-
         /* BEIJO AO TOQUE */
         .kiss-mark {
             position: absolute;
@@ -48,7 +45,6 @@
             70% { opacity: 1; }
             100% { transform: translate(-50%, -50%) scale(1.4) rotate(18deg); opacity: 0; }
         }
-
         /* INTRO */
         #intro {
             position: fixed;
@@ -84,7 +80,6 @@
             margin-bottom: 28px;
             opacity: 0.85;
         }
-
         /* MAIN */
         #main-content {
             display: none;
@@ -92,7 +87,6 @@
         #main-content.show {
             display: block;
         }
-
         section {
             min-height: 100vh;
             padding: 70px 18px 90px;
@@ -101,12 +95,10 @@
             align-items: center;
             position: relative;
         }
-
         .container {
             width: 100%;
             max-width: 380px;
         }
-
         /* CARDS */
         .card {
             background: white;
@@ -117,7 +109,6 @@
             margin-bottom: 28px;
             position: relative;
         }
-
         .paper-ripped {
             background: white;
             padding: 18px 18px 18px 22px;
@@ -127,7 +118,6 @@
             border-radius: 0 6px 6px 0;
         }
         .paper-ripped.pink { border-left-color: var(--pink); }
-
         /* POLAROID */
         .polaroid {
             background: white;
@@ -160,7 +150,6 @@
             color: var(--text);
             line-height: 1.3;
         }
-
         /* MODAL ZOOM POLAROID */
         #polaroid-modal {
             position: fixed;
@@ -223,7 +212,6 @@
             justify-content: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
-
         /* TÍTULOS */
         h1, h2, h3 {
             font-family: 'Dancing Script', cursive;
@@ -239,7 +227,6 @@
             font-size: 1.5rem;
             margin-bottom: 8px;
         }
-
         /* TIMER */
         .timer {
             font-size: 1.35rem;
@@ -249,7 +236,6 @@
             margin: 16px 0;
             letter-spacing: 0.5px;
         }
-
         /* BOTÕES */
         .btn-main {
             padding: 14px 32px;
@@ -267,7 +253,6 @@
             transform: scale(0.96);
             box-shadow: 0 2px 8px rgba(163,29,29,0.3);
         }
-
         .quiz-option {
             display: block;
             width: 100%;
@@ -286,7 +271,6 @@
             background: var(--pink);
             transform: scale(0.98);
         }
-
         /* CARTA */
         .letter-box {
             display: none;
@@ -308,7 +292,6 @@
             from { opacity: 0; transform: translateY(20px) scale(0.95); }
             to { opacity: 1; transform: none; }
         }
-
         #gift-box {
             font-size: 90px;
             cursor: pointer;
@@ -320,14 +303,12 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
         }
-
         footer {
             padding: 40px 20px 60px;
             text-align: center;
             opacity: 0.55;
             font-size: 0.9rem;
         }
-
         /* DECOR */
         .deco {
             display: block;
@@ -335,7 +316,6 @@
             max-width: 100%;
             height: auto;
         }
-
         /* REASON */
         #reason-text {
             font-size: 1.15rem;
@@ -346,7 +326,6 @@
             text-align: center;
             padding: 8px;
         }
-
         /* QUIZ FEEDBACK */
         #quiz-feedback {
             margin-top: 14px;
@@ -354,10 +333,43 @@
             min-height: 28px;
             text-align: center;
         }
-
         /* SCROLL SUAVE */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* ===== BOTÃO DE MÚSICA (canto inferior esquerdo, bem pequeno) ===== */
+        #music-btn {
+            position: fixed;
+            bottom: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            z-index: 9000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+            opacity: 0.92;
+            transition: transform 0.15s, opacity 0.2s;
+        }
+        #music-btn.show {
+            display: flex;
+        }
+        #music-btn:active {
+            transform: scale(0.88);
+        }
+        #music-btn img {
+            width: 36px;
+            height: 36px;
+            display: block;
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         /* PEQUENOS AJUSTES MOBILE */
@@ -370,10 +382,15 @@
 </head>
 <body onclick="spawnKiss(event)">
 
-    <!-- MÚSICA (coloque seu arquivo depois) -->
-    <audio id="music" loop>
-        <source src="musica.mp3" type="audio/mpeg">
+    <!-- MÚSICA -->
+    <audio id="music" loop preload="auto">
+        <source src="./musica.mp3" type="audio/mpeg">
     </audio>
+
+    <!-- BOTÃO PEQUENO PLAY/PAUSE (canto inferior esquerdo) -->
+    <button id="music-btn" onclick="toggleMusic(event)" title="Pausar / Continuar música" aria-label="Controle de música">
+        <img id="music-icon" src="" alt="Play/Pause">
+    </button>
 
     <!-- 1. TELA INICIAL -->
     <div id="intro">
@@ -384,7 +401,6 @@
     </div>
 
     <div id="main-content">
-
         <!-- 2. CONTADOR -->
         <section>
             <img src="./te amo.png" class="deco" style="width: 260px; margin-bottom: 10px;" data-aos="fade-down" alt="Te Amo">
@@ -416,18 +432,15 @@
                     <h3 style="text-align: left;">❤️ Quando percebemos...</h3>
                     <p>Foi naquele momento em que o coração acelerou e não teve mais volta. A gente só soube que era real.</p>
                 </div>
-
                 <div class="paper-ripped" data-aos="fade-right">
                     <h3 style="text-align: left;">🥹 Momentos difíceis</h3>
                     <p>Passamos por tempestades juntas. Cada desafio só mostrou o quanto a gente é forte uma pela outra.</p>
                 </div>
-
                 <div class="paper-ripped pink" data-aos="fade-left">
                     <h3 style="text-align: left;">💍 Onde estamos hoje</h3>
                     <p>Aqui. Juntas. Escolhendo uma à outra todos os dias. E eu não trocaria isso por nada nesse universo.</p>
                 </div>
             </div>
-
             <img src="./love.png" class="deco" style="width: 200px; margin-top: 20px; opacity: 0.9;" data-aos="fade-up" alt="Love">
         </section>
 
@@ -444,21 +457,17 @@
                     <p class="caption">Nosso melhor momento</p>
                     <span class="full-caption" style="display:none;">Talvez pra outras pessoas seja só uma foto... mas pra mim ela guarda um dos dias mais especiais da minha vida ao seu lado.</span>
                 </div>
-
                 <img src="imgs/stickers.jpg" class="deco" style="width: 140px; margin: -10px auto 24px; transform: rotate(8deg);" data-aos="zoom-in" alt="Stickers">
-
                 <div class="polaroid" style="--r: 3deg" data-aos="flip-right" onclick="openPolaroid(this)">
                     <img src="./2.jpg" alt="Beijo">
                     <p class="caption">Amo o seu sorriso</p>
                     <span class="full-caption" style="display:none;">Esse sorriso seu é capaz de transformar qualquer dia ruim em algo lindo. Eu vivo por ele.</span>
                 </div>
-
                 <div class="polaroid" style="--r: -2deg" data-aos="flip-left" onclick="openPolaroid(this)">
                     <img src="./3.jpg" alt="Nós de novo">
                     <p class="caption">Você + Eu = ❤️</p>
                     <span class="full-caption" style="display:none;">Não existe combinação melhor no mundo. Você é meu lugar favorito.</span>
                 </div>
-
                 <div class="polaroid" style="--r: 5deg" data-aos="flip-right" onclick="openPolaroid(this)">
                     <img src="./4.jpg" alt="Carta">
                     <p class="caption">Pra sempre</p>
@@ -508,133 +517,69 @@
                     <p>
                             Oi, minha Joaninha...
                             <br>
-
                             Hoje eu queria falar uma coisa que talvez eu já tenha falado várias vezes, mas que nunca vai ser demais repetir: eu amo você.
-
                             E hoje é ainda mais especial, porque não estamos comemorando apenas mais um dia juntas. Estamos comemorando 1 ano da nossa história.
-
                             Um ano...
-
                             Quando eu paro para pensar nisso, parece até estranho imaginar que já passou tanto tempo.
-
                             Parece que foi ontem que tudo começou, mas, ao mesmo tempo, parece que você está na minha vida há muito mais tempo.
-
                             Nesse um ano, a gente viveu tanta coisa...
-
                             Tivemos dias em que tudo parecia perfeito, dias em que a gente só queria ficar juntinhas, rir de qualquer besteira e aproveitar a companhia uma da outra.
-
                             Mas também tivemos dias difíceis.
-
                             Dias de discussão, de insegurança, de medo, de lágrimas e de momentos em que talvez a gente tenha pensado que não conseguiria.
-
                             Mas olha para nós...
-
                             A gente chegou até aqui.
-
                             E acho que é justamente isso que torna esse primeiro ano tão especial para mim.
-
                             Não foi perfeito. Foi nosso.
-
                             Foram dois corações aprendendo a amar, aprendendo a entender uma à outra, aprendendo a lidar com as diferenças e descobrindo, pouco a pouco, como construir uma vida juntas.
-
                             Eu lembro de vários momentos nossos e fico sorrindo sozinha.
-
                             Das nossas conversas, das nossas brincadeiras, dos nossos encontros, dos momentos simples que acabaram se tornando algumas das minhas memórias favoritas.
-
                             E é engraçado porque, às vezes, não foi nem um momento grandioso.
-
                             Foi só estar perto de você. Só conversar. Só rir. Só olhar para você.
-
                             Porque quando é com você, até as coisas mais simples se tornam especiais.
-
                             Eu amo o seu jeito.
-
                             Amo suas manias, seu sorriso, sua voz, seu jeito de falar comigo, as coisas bobas que você faz sem perceber.
-
                             Amo quando você me faz rir e até quando me tira do sério.
-
                             Amo a pessoa que você é e amo a pessoa que eu me torno quando estou com você.
-
                             E eu quero que você saiba que, durante esse um ano, você se tornou muito mais do que alguém que eu namoro.
-
                             Você se tornou alguém que eu quero na minha vida.
-
                             Alguém para quem eu quero contar as coisas quando acontece alguma coisa boa.
-
                             Alguém que eu procuro quando estou mal.
-
                             Alguém com quem eu quero dividir minhas conquistas, meus medos, meus planos e meus sonhos.
-
                             Você virou parte da minha rotina, dos meus pensamentos e, principalmente, do meu coração.
-
                             E eu sei que amar alguém também significa aprender.
-
                             Eu sei que ainda temos muito para aprender uma sobre a outra.
-
                             Ainda vamos discordar, ainda vamos ter dias difíceis, ainda vamos errar.
-
                             Mas eu não quero uma história perfeita.
-
                             Eu quero uma história verdadeira.
-
                             Quero uma história em que, mesmo quando as coisas ficarem difíceis, a gente consiga olhar uma para a outra e lembrar do motivo pelo qual começamos.
-
                             Porque eu escolheria você.
-
                             Depois de tudo que vivemos nesse primeiro ano, eu ainda escolheria você.
-
                             E se eu pudesse voltar para o começo de tudo e soubesse de todas as coisas que iríamos passar, de todas as risadas, de todas as lágrimas, de todas as dificuldades e de todos os momentos incríveis...
-
                             Eu escolheria você do mesmo jeito.
-
                             Sem pensar duas vezes.
-
                             Minha Joaninha, obrigada por esse primeiro ano.
-
                             Obrigada por cada abraço, cada beijo, cada conversa, cada risada e cada lembrança.
-
                             Obrigada até pelos momentos difíceis, porque eles também fizeram parte da nossa história e nos ensinaram alguma coisa.
-
                             E eu espero que esse seja apenas o primeiro de muitos anos.
-
                             Quero olhar para trás daqui a 5, 10, 20 anos e lembrar desse vídeo, desse primeiro ano, e pensar:
-
                             "Olha onde a gente chegou."
-
                             Quero continuar criando memórias com você.
-
                             Quero conhecer lugares com você, viver coisas novas, fazer planos, realizar sonhos e também viver aqueles momentos simples que só nós duas sabemos aproveitar.
-
                             Eu não sei exatamente o que o futuro guarda para a gente.
-
                             Mas eu sei de uma coisa:
-
                             eu quero viver esse futuro com você.
-
                             Quero continuar te escolhendo.
-
                             Quero continuar te amando.
-
                             Quero continuar cuidando de nós.
-
                             E, principalmente, quero continuar tendo você como a minha Joaninha.
-
                             Então, feliz 1 ano de namoro, meu amor.
-
                             Feliz 1 ano para nós.
-
                             Feliz 1 ano para a nossa história.
-
                             E que venham muitos outros anos, muitas outras histórias e muitos outros "eu te amo".
-
                             Eu amo você mais do que consigo colocar em palavras.
-
                             E se um dia você esquecer disso, lembra desse vídeo.
-
                             Lembra que, nesse dia, no nosso primeiro ano, eu olhei para você e disse com todo o meu coração:
-
                             Eu amo você, minha Joaninha. E eu escolheria você de novo. Sempre. ❤️🐞<br>
-
                         <strong>de: Sabrina</strong>
                     </p>
                     <img src="./snoopy7.png" style="width: 120px; margin-top: 18px; border-radius: 8px; opacity: 0.85;" alt="Beijos">
@@ -683,14 +628,29 @@
 
         let reasonIndex = 0;
 
+        // ===== CONTROLE DE MÚSICA =====
+        const music = document.getElementById('music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+
+        // Ícones SVG idênticos aos que você mandou (círculo preto + símbolo branco)
+        const iconPlay = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23000"/><polygon points="38,28 38,72 75,50" fill="%23fff"/></svg>';
+        const iconPause = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23000"/><rect x="32" y="28" width="12" height="44" fill="%23fff"/><rect x="56" y="28" width="12" height="44" fill="%23fff"/></svg>';
+
         function startApp() {
             const intro = document.getElementById('intro');
             intro.classList.add('hide');
             document.getElementById('main-content').classList.add('show');
-            
-            // tenta tocar música (alguns celulares bloqueiam autoplay)
-            const music = document.getElementById('music');
-            music.play().catch(() => {});
+
+            // TOCA A MÚSICA ASSIM QUE CLICA EM COMEÇAR
+            music.play().then(() => {
+                musicBtn.classList.add('show');
+                musicIcon.src = iconPause; // está tocando → mostra pause
+            }).catch(() => {
+                // celular bloqueou autoplay → mostra o botão mesmo assim
+                musicBtn.classList.add('show');
+                musicIcon.src = iconPlay;
+            });
 
             updateTimer();
             setInterval(updateTimer, 1000);
@@ -705,6 +665,18 @@
                     colors: ['#a31d1d', '#f8adac', '#ff6b6b']
                 });
             }, 400);
+        }
+
+        function toggleMusic(e) {
+            e.stopPropagation(); // não cria beijo nem interfere em nada
+
+            if (music.paused) {
+                music.play();
+                musicIcon.src = iconPause;
+            } else {
+                music.pause();
+                musicIcon.src = iconPlay;
+            }
         }
 
         function updateTimer() {
@@ -774,14 +746,9 @@
 
         // BEIJO AO TOQUE
         function spawnKiss(e) {
-            // não cria beijo se clicou em botão ou polaroid
-            if (e.target.closest('button') || e.target.closest('.polaroid') || e.target.closest('#polaroid-modal') || e.target.closest('#gift-box')) return;
+            // não cria beijo se clicou em botão, polaroid ou no botão de música
+            if (e.target.closest('button') || e.target.closest('.polaroid') || e.target.closest('#polaroid-modal') || e.target.closest('#gift-box') || e.target.closest('#music-btn')) return;
             
-            const kiss = document.createElement('img');
-            kiss.src = 'imgs/kisses-bg.jpg'; // ou use uma marca de beijo isolada se tiver
-            // como a imagem é padrão, vamos usar uma versão menor / ou criar um emoji de beijo
-            // melhor: usar um emoji grande mesmo pra ficar leve
-            kiss.remove(); // remove o img
             const kissEmoji = document.createElement('div');
             kissEmoji.innerText = '💋';
             kissEmoji.className = 'kiss-mark';
