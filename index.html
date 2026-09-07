@@ -337,7 +337,6 @@
         html {
             scroll-behavior: smooth;
         }
-
         /* ===== BOTÃO DE MÚSICA (canto inferior esquerdo, bem pequeno) ===== */
         #music-btn {
             position: fixed;
@@ -371,7 +370,6 @@
             border-radius: 50%;
             pointer-events: none;
         }
-
         /* PEQUENOS AJUSTES MOBILE */
         @media (max-width: 360px) {
             h2 { font-size: 2.1rem; }
@@ -381,17 +379,14 @@
     </style>
 </head>
 <body onclick="spawnKiss(event)">
-
     <!-- MÚSICA -->
     <audio id="music" loop preload="auto">
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
-
     <!-- BOTÃO PEQUENO PLAY/PAUSE (canto inferior esquerdo) -->
     <button id="music-btn" onclick="toggleMusic(event)" title="Pausar / Continuar música" aria-label="Controle de música">
         <img id="music-icon" src="" alt="Play/Pause">
     </button>
-
     <!-- 1. TELA INICIAL -->
     <div id="intro">
         <img src="./FLanf-Photoroom.png" alt="Snoopy" data-aos="zoom-in">
@@ -399,7 +394,6 @@
         <p>Preparei algo especial<br>só pra você ❤️</p>
         <button class="btn-main" onclick="startApp()">Clique aqui, meu amor</button>
     </div>
-
     <div id="main-content">
         <!-- 2. CONTADOR -->
         <section>
@@ -417,7 +411,6 @@
             
             <img src="./corazon.png" class="deco" style="width: 280px; margin-top: 10px;" data-aos="zoom-in" alt="Corações conectados">
         </section>
-
         <!-- 3. NOSSA HISTÓRIA -->
         <section style="background: rgba(255,255,255,0.55);">
             <h2 data-aos="fade-up">Nossa História 📖</h2>
@@ -441,15 +434,10 @@
                     <p>Aqui. Juntas. Escolhendo uma à outra todos os dias. E eu não trocaria isso por nada nesse universo.</p>
                 </div>
             </div>
-            <img src="./love.png" class="deco" style="width: 200px; margin-top: 20px; opacity: 0.9;" data-aos="fade-up" alt="Love">
         </section>
-
         <!-- 4. GALERIA POLAROID -->
         <section>
-            <h2 data-aos="fade-up">Cada foto, uma parte de nós 📸</h2>
-            <p style="text-align: center; margin-bottom: 28px; font-size: 0.95rem; opacity: 0.8; max-width: 320px;">
-                Toque em qualquer polaroid pra ampliar ✨
-            </p>
+            <h2 data-aos="fade-up">Cada foto, uma parte de nós </h2>
             
             <div class="container">
                 <div class="polaroid" style="--r: -4deg" data-aos="flip-left" onclick="openPolaroid(this)">
@@ -457,7 +445,6 @@
                     <p class="caption">Nosso melhor momento</p>
                     <span class="full-caption" style="display:none;">Talvez pra outras pessoas seja só uma foto... mas pra mim ela guarda um dos dias mais especiais da minha vida ao seu lado.</span>
                 </div>
-                <img src="imgs/stickers.jpg" class="deco" style="width: 140px; margin: -10px auto 24px; transform: rotate(8deg);" data-aos="zoom-in" alt="Stickers">
                 <div class="polaroid" style="--r: 3deg" data-aos="flip-right" onclick="openPolaroid(this)">
                     <img src="./2.jpg" alt="Beijo">
                     <p class="caption">Amo o seu sorriso</p>
@@ -475,7 +462,6 @@
                 </div>
             </div>
         </section>
-
         <!-- 5. MOTIVOS -->
         <section style="background: white;">
             <h2 data-aos="fade-up">Motivos pelos quais eu te amo ❤️</h2>
@@ -485,17 +471,18 @@
                     <p id="reason-text">Descubra...</p>
                 </div>
                 <button class="btn-main" onclick="showNextReason()">Descobrir motivo</button>
+                <!-- Gatinhos se abraçando (embaixo das perguntas) -->
+            <img src="./cat.png" alt="Gatinhos se abraçando" style="width: 220px; max-width: 80%; margin: 20px auto 10px; display: block; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));" data-aos="zoom-in">
             </div>
         </section>
-
         <!-- 6. QUIZ -->
         <section>
             <h2 data-aos="fade-up">Quanto você conhece nossa história?</h2>
             
             <div class="container card" data-aos="fade-up">
                 <p id="quiz-question" style="font-weight: 600; margin-bottom: 16px; text-align: center;">Qual foi o lugar do nosso primeiro beijo?</p>
-                <button class="quiz-option" onclick="quiz(true)">No lugar especial que a gente sabe 😏</button>
-                <button class="quiz-option" onclick="quiz(false)">Em um sonho 😂</button>
+                <button class="quiz-option" onclick="quiz(true)">No lugar especial que a gente sabe</button>
+                <button class="quiz-option" onclick="quiz(false)">Em um sonho</button>
                 <button class="quiz-option" onclick="quiz(false)">Por acaso na rua</button>
                 <p id="quiz-feedback"></p>
             </div>
@@ -504,7 +491,6 @@
                 "Independentemente do resultado, você sempre será a pessoa que mais conhece meu coração."
             </p>
         </section>
-
         <!-- 7. CARTA SURPRESA -->
         <section id="final">
             <h2 data-aos="fade-up">Uma surpresa pra você</h2>
@@ -586,13 +572,10 @@
                 </div>
             </div>
         </section>
-
         <footer>
-            Feito com todo o amor e um pouco de obsessão do mundo ❤️<br>
-            Nosso Pequeno Universo
+            <p>Sabrina & Rayumi</p>
         </footer>
     </div>
-
     <!-- MODAL POLAROID -->
     <div id="polaroid-modal" onclick="closePolaroid(event)">
         <div class="modal-polaroid" onclick="event.stopPropagation()">
@@ -601,16 +584,12 @@
             <p class="caption" id="modal-caption"></p>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <script>
         AOS.init({ duration: 900, once: true, offset: 40 });
-
         // ====== CONFIGURE AQUI ======
         const startDate = new Date("2023-01-12T00:00:00"); // MUDE PARA A DATA REAL DE VOCÊS
-
         const reasons = [
             "Amo o seu sorriso. Ele é viciante.",
             "Amo o jeito como você me faz rir até doer a barriga.",
@@ -625,23 +604,18 @@
             "Amo porque, mesmo nos dias difíceis, nossa história significa tudo.",
             "Amo você simplesmente por ser você. Ponto final."
         ];
-
         let reasonIndex = 0;
-
         // ===== CONTROLE DE MÚSICA =====
         const music = document.getElementById('music');
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
-
         // Ícones SVG idênticos aos que você mandou (círculo preto + símbolo branco)
         const iconPlay = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23000"/><polygon points="38,28 38,72 75,50" fill="%23fff"/></svg>';
         const iconPause = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23000"/><rect x="32" y="28" width="12" height="44" fill="%23fff"/><rect x="56" y="28" width="12" height="44" fill="%23fff"/></svg>';
-
         function startApp() {
             const intro = document.getElementById('intro');
             intro.classList.add('hide');
             document.getElementById('main-content').classList.add('show');
-
             // TOCA A MÚSICA ASSIM QUE CLICA EM COMEÇAR
             music.play().then(() => {
                 musicBtn.classList.add('show');
@@ -651,7 +625,6 @@
                 musicBtn.classList.add('show');
                 musicIcon.src = iconPlay;
             });
-
             updateTimer();
             setInterval(updateTimer, 1000);
             window.scrollTo(0, 0);
@@ -666,10 +639,8 @@
                 });
             }, 400);
         }
-
         function toggleMusic(e) {
             e.stopPropagation(); // não cria beijo nem interfere em nada
-
             if (music.paused) {
                 music.play();
                 musicIcon.src = iconPause;
@@ -678,7 +649,6 @@
                 musicIcon.src = iconPlay;
             }
         }
-
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
@@ -688,7 +658,6 @@
             const s = Math.floor((diff / 1000) % 60);
             document.getElementById('timer').innerText = `${d} dias, ${h}h ${m}m ${s}s`;
         }
-
         function showNextReason() {
             const text = reasons[reasonIndex % reasons.length];
             reasonIndex++;
@@ -700,7 +669,6 @@
                 colors: ['#a31d1d', '#f8adac']
             });
         }
-
         function quiz(correct) {
             const fb = document.getElementById('quiz-feedback');
             if (correct) {
@@ -712,7 +680,6 @@
                 fb.style.color = "var(--red)";
             }
         }
-
         function openLetter() {
             document.getElementById('gift-box').style.display = 'none';
             const letter = document.getElementById('letter');
@@ -724,7 +691,6 @@
                 colors: ['#a31d1d', '#f8adac', '#ffd700']
             });
         }
-
         // POLAROID ZOOM
         function openPolaroid(el) {
             const imgSrc = el.querySelector('img').src;
@@ -737,13 +703,11 @@
             modal.classList.add('open');
             document.body.style.overflow = 'hidden';
         }
-
         function closePolaroid(e) {
             if (e && e.target !== document.getElementById('polaroid-modal') && !e.target.classList.contains('close-modal')) return;
             document.getElementById('polaroid-modal').classList.remove('open');
             document.body.style.overflow = '';
         }
-
         // BEIJO AO TOQUE
         function spawnKiss(e) {
             // não cria beijo se clicou em botão, polaroid ou no botão de música
@@ -758,7 +722,6 @@
             document.body.appendChild(kissEmoji);
             setTimeout(() => kissEmoji.remove(), 1100);
         }
-
         // fecha modal com ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closePolaroid({ target: document.getElementById('polaroid-modal') });
